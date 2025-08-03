@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Firebase Auth</title>
+    <link rel="stylesheet" href="src/style.css">
+    <style>
+        .signup-container {
+            max-width: 450px;
+            margin: 80px auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        input {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #646cff;
+            box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.1);
+        }
+        
+        .signup-btn {
+            background: #646cff;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .signup-btn:hover {
+            background: #5a5fcf;
+        }
+        
+        .signup-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            background: #fdf2f2;
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: 1px solid #f5c6cb;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .success-message {
+            color: #27ae60;
+            background: #f2f8f2;
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: 1px solid #c6f5cb;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .auth-links {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .auth-links a {
+            color: #646cff;
+            text-decoration: none;
+        }
+        
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .password-requirements {
+            font-size: 0.875rem;
+            color: #666;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .password-requirements ul {
+            margin: 0.5rem 0 0 1rem;
+            padding: 0;
+        }
+        
+        .password-requirements li {
+            margin: 0.25rem 0;
+        }
+        
+        .requirement-met {
+            color: #27ae60;
+        }
+        
+        .requirement-unmet {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        
+        <div id="errorMessage" class="error-message"></div>
+        <div id="successMessage" class="success-message"></div>
+        
+        <form id="signupForm" class="signup-form">
+            <div class="form-group">
+                <label for="displayName">Full Name:</label>
+                <input type="text" id="displayName" name="displayName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div class="password-requirements">
+                    <p>Password must contain:</p>
+                    <ul>
+                        <li id="length-req" class="requirement-unmet">At least 8 characters</li>
+                        <li id="uppercase-req" class="requirement-unmet">One uppercase letter</li>
+                        <li id="lowercase-req" class="requirement-unmet">One lowercase letter</li>
+                        <li id="number-req" class="requirement-unmet">One number</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            
+            <button type="submit" id="signupBtn" class="signup-btn">
+                Create Account
+            </button>
+        </form>
+        
+        <div class="auth-links">
+            <p>Already have an account? <a href="login.html">Sign in</a></p>
+            <p><a href="index.html">Back to Home</a></p>
+        </div>
+    </div>
+
+    <script type="module" src="src/signup.js"></script>
+</body>
+</html>

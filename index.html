@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Auth Demo</title>
+    <link rel="stylesheet" href="src/style.css">
+    <style>
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .auth-status {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 2rem;
+        border-left: 4px solid #646cff;
+      }
+      
+      .nav-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+      
+      .nav-links a {
+        display: block;
+        color: #646cff;
+        text-decoration: none;
+        padding: 1rem;
+        border: 1px solid #646cff;
+        border-radius: 4px;
+        text-align: center;
+        transition: all 0.3s;
+      }
+      
+      .nav-links a:hover {
+        background: #646cff;
+        color: white;
+      }
+      
+      .logout-btn {
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+        margin-top: 1rem;
+      }
+      
+      .logout-btn:hover {
+        background: #c0392b;
+      }
+      
+      .hidden {
+        display: none;
+      }
+      
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      
+      .loading {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔥 Firebase Authentication Demo</h1>
+      
+      <div id="authStatus" class="auth-status">
+        <div id="loadingStatus" class="loading">
+          Checking authentication status...
+        </div>
+        
+        <div id="authenticatedStatus" class="hidden">
+          <p><strong>✅ You are logged in!</strong></p>
+          <p>Email: <span id="userEmailDisplay">-</span></p>
+          <p>Display Name: <span id="userDisplayNameDisplay">-</span></p>
+          <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+        
+        <div id="unauthenticatedStatus" class="hidden">
+          <p><strong>❌ You are not logged in</strong></p>
+          <p>Please sign in to access protected features.</p>
+        </div>
+      </div>
+      
+      <div class="nav-links">
+        <a href="home.html">🏠 Protected Home Page</a>
+        <a href="login.html">🔑 Login</a>
+        <a href="signup.html">📝 Sign Up</a>
+      </div>
+      
+      <div>
+        <h3>About This Demo</h3>
+        <p>This is a Firebase Authentication demonstration with the following features:</p>
+        <ul>
+          <li><strong>Login/Signup:</strong> Email and password authentication</li>
+          <li><strong>Page Protection:</strong> Protected pages that require authentication</li>
+          <li><strong>Auto-redirect:</strong> Automatic redirection based on authentication status</li>
+          <li><strong>Password Reset:</strong> Forgot password functionality</li>
+          <li><strong>Real-time Auth:</strong> Authentication state updates in real-time</li>
+        </ul>
+        
+        <h4>Try These Actions:</h4>
+        <ol>
+          <li>Try accessing the "Protected Home Page" without logging in</li>
+          <li>Create a new account via "Sign Up"</li>
+          <li>Login with your credentials</li>
+          <li>Access the protected page after authentication</li>
+          <li>Test the logout functionality</li>
+        </ol>
+      </div>
+    </div>
+
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="src/index.js"></script>
+  </body>
+</html>

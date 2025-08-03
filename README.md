@@ -35,8 +35,22 @@ Before you begin, ensure you have:
    npm install
    ```
 
-3. **Configure Firebase:**
-   - Update `src/firebase_config.js` with your Firebase project configuration
+3. **Configure Firebase Environment Variables:**
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Open `.env` and update with your Firebase project configuration:
+     ```bash
+     # Get these values from Firebase Console > Project Settings > General tab
+     VITE_FIREBASE_API_KEY=your_api_key_here
+     VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+     VITE_FIREBASE_PROJECT_ID=your_project_id
+     VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+     VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id_here
+     VITE_FIREBASE_APP_ID=your_app_id_here
+     VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id_here
+     ```
    - Enable Authentication in Firebase Console
    - Configure sign-in methods (Email/Password, etc.)
 
@@ -279,6 +293,9 @@ firebase-deploy/
 │   ├── main.js             # Main page logic
 │   └── style.css           # Global styles
 ├── *.html                  # HTML pages (auto-detected by Vite)
+├── .env                    # Environment variables (not in git)
+├── .env.example            # Environment template
+├── .gitignore              # Git ignore rules
 ├── firebase.json           # Firebase configuration
 ├── firestore.rules         # Firestore security rules
 ├── firestore.indexes.json  # Firestore indexes
@@ -289,6 +306,11 @@ firebase-deploy/
 
 ## 🔧 Configuration Files
 
+### Environment Variables (`.env`)
+- **Firebase Config:** All Firebase credentials stored securely
+- **Vite Prefix:** All variables use `VITE_` prefix for client-side access
+- **Security:** `.env` file is gitignored to prevent credential leaks
+
 ### Firebase Configuration (`firebase.json`)
 - **Hosting:** Points to `dist/` directory
 - **Firestore:** Database rules and indexes
@@ -298,19 +320,39 @@ firebase-deploy/
 - **Multi-page setup:** Automatically detects all `.html` files
 - **Build optimization:** Rollup bundling for production
 
+## 🔒 Security Best Practices
+
+### Environment Variables
+- **Never commit** `.env` files to version control
+- **Use `.env.example`** as a template for new developers
+- **Firebase API keys** are safe to expose in client-side code (they identify your project)
+- **Use Firestore rules** for actual security enforcement
+
+### Production Deployment
+- Environment variables are automatically loaded by Vite during build
+- For hosting platforms (Vercel, Netlify), set environment variables in their dashboard
+- Firebase Hosting automatically uses your project configuration
+
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
 1. **"Firebase app not initialized" error:**
-   - Check `src/firebase_config.js` configuration
-   - Ensure Firebase project is properly set up
+   - Check `.env` file exists and has correct values
+   - Ensure all `VITE_FIREBASE_*` variables are set
+   - Verify Firebase project is properly set up
 
-2. **Build fails:**
+2. **Environment variables not loading:**
+   - Ensure variables start with `VITE_` prefix
+   - Restart development server after changing `.env`
+   - Check `.env` file is in the root directory
+
+3. **Build fails:**
    - Check for syntax errors in JS files
    - Ensure all imports are correct
+   - Verify all environment variables are set
 
-3. **Authentication not working:**
+4. **Authentication not working:**
    - Verify Firebase Authentication is enabled
    - Check browser console for detailed errors
    - Ensure correct sign-in methods are enabled
