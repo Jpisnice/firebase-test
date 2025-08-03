@@ -1,12 +1,6 @@
 # 🛠️ Getting Started
 
-This guide will 2. **Install dependencies:**
-   ```bash
-   npm install
-   # or
-   pnpm install
-   ```
-   > **What this does:** Downloads all the code libraries this project needsyou set up the project from scratch. Don't worry if you're new to this - we'll walk through everything step by step!
+This guide will help you set up the project from scratch. Don't worry if you're new to this - we'll walk through everything step by step!
 
 ## 📋 What You Need First
 
