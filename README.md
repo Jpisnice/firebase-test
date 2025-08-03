@@ -24,8 +24,8 @@ Before you begin, ensure you have:
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
-   cd firebase-deploy
+   git clone https://github.com/Jpisnice/firebase-test.git
+   cd firebase-test
    ```
 
 2. **Install dependencies:**
